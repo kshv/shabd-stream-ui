@@ -10,6 +10,10 @@ on:
         description: 'Base url of the backend server'
         required: true
         default: 'https://shabdserverprod.azurewebsites.net/api/'
+      SocketServerUrl:
+        description: 'Base url of the socket server'
+        required: true
+        default: 'https://shabdstreamserver.azurewebsites.net/'
 
 jobs:
   build:
@@ -28,6 +32,7 @@ jobs:
           touch .env
           echo REACT_APP_NAME="Shabd" >> .env
           echo REACT_APP_BASEURL=${{github.event.inputs.ServerBaseUrl}} >> .env
+          echo REACT_APP_SOCKETURL=${{github.event.inputs.SocketServerUrl}} >> .env
           echo REACT_APP_APPINSIGHTS_KEY=${{secrets.AppInsightsKeyProd}} >> .env
           echo REACT_APP_GOOGLE_CLIENTID=${{secrets.GoogleClientId}} >> .env
 
